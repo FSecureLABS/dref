@@ -1,0 +1,7 @@
+general:
+  domain: corruptstack.com
+  address: 178.128.32.113
+
+targets:
+  - target: "demo"
+    script: "web-discover"

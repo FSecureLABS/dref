@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - stable
+cache:
+  npm: true
+  directories:
+    - node_modules
+env:
+  - TEST_DIR=dref/dns
+script: cd $TEST_DIR && npm install && npm test && codecov

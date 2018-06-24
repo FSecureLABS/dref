@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  script.
+    var env = !{JSON.stringify(env).replace(/<\//g, '<\\/')}
+    var args = !{JSON.stringify(args).replace(/<\//g, '<\\/')}
+  
+  script(src="/scripts/#{script}.js")
+  
+  if hang
+    img(style="display:none", src="/hang")

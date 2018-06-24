@@ -1,0 +1,67 @@
+version: '3'
+
+volumes:
+  api_node_modules:
+  scripts_node_modules:
+  dns_node_modules:
+
+networks:
+  dref:
+    driver: bridge
+
+services:
+  mongo:
+    image: mongo:3.6.5-jessie
+    networks:
+      - dref
+
+  dns:
+    image: node:9.11.1-alpine
+    ports:
+      - 0.0.0.0:53:53/udp
+    volumes:
+      - ./dref/dns/:/src:rw
+      - ./dref-config.yml:/tmp/dref-config.yml:ro
+      - dns_node_modules:/src/node_modules
+    working_dir: /src/
+    networks:
+      - dref
+    command: sh -c "npm install && npm run build && npm run start"
+    depends_on:
+      - mongo
+
+  scripts:
+    image: node:9.11.1-alpine
+    networks:
+      - dref
+    environment:  
+      - HOST=0.0.0.0
+      - PORT=8000
+    volumes:
+      - ./dref/scripts/:/src:rw
+      - scripts_node_modules:/src/node_modules
+    working_dir: /src/
+    command: sh -c "npm install && npm run dev"
+    depends_on:
+      - mongo
+
+  api:
+    image: node:9.11.1-alpine
+    networks:
+      - dref
+    ports:
+      - 0.0.0.0:80:80
+      - 0.0.0.0:8000:80
+      - 0.0.0.0:8080:80
+      - 0.0.0.0:8888:80
+    environment:
+      - PORT=80
+    volumes:
+      - ./dref/api/:/src:rw
+      - ./dref-config.yml:/tmp/dref-config.yml:ro
+      - api_node_modules:/src/node_modules
+    working_dir: /src/
+    command: sh -c "npm install && npm run build && npm run start"
+    depends_on:
+      - mongo
+      - scripts

@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  mongo:
+    ports:
+      - 127.0.0.1:27017:27017
+
+  dns:
+    command: sh -c "npm install && npm run dev"
+
+  api:
+    command: sh -c "npm install && npm run dev"
