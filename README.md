@@ -26,7 +26,7 @@
   </p>
 </dl>
 
-dref does the heavy-lifting for [DNS rebinding](https://en.wikipedia.org/wiki/DNS_rebinding). The following snippet from one of its [default payloads](https://github.com/serain/dref/wiki/Payloads#web-discover) shows the framework being used to scan a local subnet from a hooked browser; after identifying live web services it proceeds to exfiltrate GET responses, [breezing through the Same-Origin policy](https://github.com/serain/dref/wiki#limitations):
+dref does the heavy-lifting for [DNS rebinding](https://en.wikipedia.org/wiki/DNS_rebinding). The following snippet from one of its [default payloads](https://github.com/mwrlabs/dref/wiki/Payloads#web-discover) shows the framework being used to scan a local subnet from a hooked browser; after identifying live web services it proceeds to exfiltrate GET responses, [breezing through the Same-Origin policy](https://github.com/mwrlabs/dref/wiki#limitations):
 
 ```javascript
 // mainFrame() runs first
