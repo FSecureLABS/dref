@@ -47,7 +47,7 @@ async function mainFrame () {
 
 // rebindFrame() will have target ip:port as origin
 function rebindFrame () {
-  // After this we'll have bypassed the Same-Origin Policy
+  // After this we'll have bypassed the Same-Origin policy
   session.triggerRebind().then(() => {
     // We can now read the response across origin...
     network.get(session.baseURL, (code, headers, body) => {
