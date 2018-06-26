@@ -1,6 +1,6 @@
 general:
-  domain: corruptstack.com
-  address: 178.128.32.113
+  domain: attacker.com
+  address: 1.2.3.4
 
 targets:
   - target: "demo"
