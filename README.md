@@ -1,6 +1,6 @@
 <dl>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/serain/dref/master/docs/img/logo.png?token=AH5HJaNTqfEIQnbVSX_QaB2Br4R5we5Bks5bOpK4wA%3D%3D">
+    <img src="https://raw.githubusercontent.com/mwrlabs/dref/master/docs/img/logo.png">
   </p>
 
   <!-- REPLACE SHIELDS -->
@@ -22,7 +22,7 @@
   <p align="center">DNS Rebinding Exploitation Framework</p>
 
   <p align="center">
-    <img src="https://raw.githubusercontent.com/serain/dref/master/docs/img/diagram.png?token=AH5HJYLZRcWi_aEJCVh8iU4efEQ4tkryks5bOpMMwA%3D%3D">
+    <img src="https://raw.githubusercontent.com/mwrlabs/dref/master/docs/img/diagram.png">
   </p>
 </dl>
 
@@ -59,8 +59,8 @@ function rebindFrame () {
 ```
 
 <dl>
-  <img align="right" src="https://raw.githubusercontent.com/serain/dref/master/docs/img/exfiltrated.png?token=AH5HJUF5NJX7nlIHFdmlXn74LOZzzbjmks5bOuukwA%3D%3D">
-  <img align="right" src="https://raw.githubusercontent.com/serain/dref/master/docs/img/arrow-bottom-right.png?token=AH5HJT0ROw-5c-TlZ7ZvUy0NaANoajbWks5bOuxuwA%3D%3D">
+  <img align="right" src="https://raw.githubusercontent.com/mwrlabs/dref/master/docs/img/exfiltrated.png">
+  <img align="right" src="https://raw.githubusercontent.com/mwrlabs/dref/master/docs/img/arrow-bottom-right.png">
 </dl>
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br />
