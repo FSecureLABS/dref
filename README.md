@@ -64,7 +64,7 @@ function rebindFrame () {
 </dl>
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br />
-Head over to the [Wiki](https://github.com/serain/dref/wiki) to get started.
+Head over to the [Wiki](https://github.com/mwrlabs/dref/wiki) to get started.
 
 <dl>
   <p align="center">
