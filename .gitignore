@@ -1,16 +1,16 @@
 .DS_Store
 
-./dref/dns/dist/*
-./dref/dns/coverage/*
+dref/dns/dist/*
+dref/dns/coverage/*
 
-./dref/api/dist/*
-./dref/api/coverage/*
+dref/api/dist/*
+dref/api/coverage/*
 
-./dref/scripts/dist/*
-./dref/scripts/coverage/*
+dref/scripts/dist/*
+dref/scripts/coverage/*
 
-./dref/ui/dist/
-./dref/ui/coverage/
+dref/ui/dist/*
+dref/ui/coverage/*
 
 package-lock.json
 
