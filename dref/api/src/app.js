@@ -32,7 +32,6 @@ for (let i = 0; i < global.config.targets.length; i++) {
   let doc = {
     target: global.config.targets[i].target,
     script: global.config.targets[i].script,
-    hang: global.config.targets[i].hang,
     args: global.config.targets[i].args
   }
 
@@ -47,7 +46,6 @@ for (let i = 0; i < global.config.targets.length; i++) {
 import indexRouter from './routes/index'
 import logsRouter from './routes/logs'
 import scriptsRouter from './routes/scripts'
-import hangRouter from './routes/hang'
 import aRecordsRouter from './routes/arecords'
 import targetsRouter from './routes/targets'
 import checkpointRouter from './routes/checkpoint'
@@ -74,7 +72,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use('/', indexRouter)
 app.use('/logs', logsRouter)
 app.use('/scripts', scriptsRouter)
-app.use('/hang', hangRouter)
 app.use('/arecords', aRecordsRouter)
 app.use('/targets', targetsRouter)
 app.use('/checkpoint', checkpointRouter)
