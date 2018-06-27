@@ -1,13 +1,14 @@
 import NetMap from 'netmap.js'
 import * as network from '../libs/network'
 import Session from '../libs/session'
+
 const session = new Session()
 
 // mainFrame() runs first
 async function mainFrame () {
   const netmap = new NetMap()
   // Use some tricks to derive the browser's local /24 subnet
-  const localSubnet = await network.getLocalSubnet('24')
+  const localSubnet = await network.getLocalSubnet(24)
 
   // Use some more tricks to scan a couple of ports across the subnet
   netmap.tcpScan(localSubnet, [80, 8080]).then(results => {

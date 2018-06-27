@@ -73,7 +73,7 @@ export function getLocalIP () {
   })
 }
 
-export async function getLocalSubnet (suffix = '24') {
+export async function getLocalSubnet (suffix = 24) {
   const localIp = await getLocalIP()
   if (localIp === '') return []
 

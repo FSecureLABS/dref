@@ -32,7 +32,7 @@ dref does the heavy-lifting for [DNS rebinding](https://en.wikipedia.org/wiki/DN
 // mainFrame() runs first
 async function mainFrame () {
   // We use some tricks to derive the browser's local /24 subnet
-  const localSubnet = await network.getLocalSubnet('24')
+  const localSubnet = await network.getLocalSubnet(24)
 
   // We use some more tricks to scan a couple of ports across the subnet
   netmap.tcpScan(localSubnet, [80, 8080]).then(results => {
