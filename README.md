@@ -5,9 +5,7 @@
 
   <!-- REPLACE SHIELDS -->
   <p align="center">
-    <a href="https://travis-ci.org/serain/netmap.js.svg?branch=master" style="text-decoration: none">
-      <img src="https://travis-ci.org/serain/netmap.js.svg?branch=master">
-    </a>
+    <img src="https://travis-ci.com/mwrlabs/dref.svg?branch=master">
     <a href="https://codecov.io/gh/serain/netmap.js">
       <img src="https://codecov.io/gh/serain/netmap.js/branch/master/graph/badge.svg">
     </a>
