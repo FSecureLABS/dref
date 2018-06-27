@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "eslint src/*.js tests/*.js && jest",
+    "test": "eslint src/**/*.js tests/**/*.js && jest",
     "build": "babel src -d dist --copy-files",
     "start": "node dist/bin/www",
     "dev": "nodemon --legacy-watch --ignore 'dist/*' --exec 'npm run build && node' dist/bin/www"

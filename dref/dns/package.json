@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "test": "eslint src/*.js tests/*.js && jest",
+    "test": "eslint src/**/*.js tests/**/*.js && jest",
     "build": "babel src -d dist",
     "start": "node dist/server.js",
     "dev": "nodemon --legacy-watch --ignore 'dist/*' --exec 'npm run build && node' dist/server.js"
