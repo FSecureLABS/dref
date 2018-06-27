@@ -5,12 +5,8 @@
 
   <!-- REPLACE SHIELDS -->
   <p align="center">
-    <a href="https://travis-ci.org/serain/netmap.js.svg?branch=master" style="text-decoration: none">
-      <img src="https://travis-ci.org/serain/netmap.js.svg?branch=master">
-    </a>
-    <a href="https://codecov.io/gh/serain/netmap.js">
-      <img src="https://codecov.io/gh/serain/netmap.js/branch/master/graph/badge.svg">
-    </a>
+    <img src="https://travis-ci.com/mwrlabs/dref.svg?branch=master">
+    <img src="https://codecov.io/gh/mwrlabs/dref/branch/master/graph/badge.svg">
     <a href="https://greenkeeper.io/">
       <img src="https://badges.greenkeeper.io/serain/netmap.js.svg">
     </a>
