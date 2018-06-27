@@ -126,7 +126,7 @@ export default class DNSAnswer {
     // class - always IN
     answer.writeUInt16BE(1, 4)
     // ttl
-    answer.writeUInt32BE(10, 6)
+    answer.writeUInt32BE(1, 6)
     // rdlength - always 4 for A record
     answer.writeUInt16BE(4, 10)
     // rdata
