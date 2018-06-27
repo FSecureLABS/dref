@@ -6,9 +6,7 @@
   <!-- REPLACE SHIELDS -->
   <p align="center">
     <img src="https://travis-ci.com/mwrlabs/dref.svg?branch=master">
-    <a href="https://codecov.io/gh/serain/netmap.js">
-      <img src="https://codecov.io/gh/serain/netmap.js/branch/master/graph/badge.svg">
-    </a>
+    <img src="https://codecov.io/gh/mwrlabs/dref/branch/master/graph/badge.svg">
     <a href="https://greenkeeper.io/">
       <img src="https://badges.greenkeeper.io/serain/netmap.js.svg">
     </a>
