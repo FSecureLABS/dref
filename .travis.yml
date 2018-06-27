@@ -4,7 +4,9 @@ node_js:
 cache:
   npm: true
   directories:
-    - node_modules
+    - dref/dns/node_modules
+    - dref/api/node_modules
+    - dref/scripts/node_modules
 env:
   - TEST_DIR=dref/dns
 script: cd $TEST_DIR && npm install && npm test && codecov
