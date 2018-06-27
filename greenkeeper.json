@@ -1,0 +1,11 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "dref/api/package.json",
+        "dref/dns/package.json",
+        "dref/scripts/package.json"
+      ]
+    }
+  }
+}
