@@ -10,6 +10,10 @@ var TargetSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  hang: {
+    type: Boolean,
+    default: false
+  },
   args: mongoose.Schema.Types.Mixed
 }, {timestamps: true})
 

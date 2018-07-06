@@ -32,6 +32,7 @@ for (let i = 0; i < global.config.targets.length; i++) {
   let doc = {
     target: global.config.targets[i].target,
     script: global.config.targets[i].script,
+    hang: global.config.targets[i].hang,
     args: global.config.targets[i].args
   }
 
@@ -49,6 +50,7 @@ import scriptsRouter from './routes/scripts'
 import aRecordsRouter from './routes/arecords'
 import targetsRouter from './routes/targets'
 import checkpointRouter from './routes/checkpoint'
+import hangRouter from './routes/hang'
 
 /**
  * Set up app
@@ -75,6 +77,7 @@ app.use('/scripts', scriptsRouter)
 app.use('/arecords', aRecordsRouter)
 app.use('/targets', targetsRouter)
 app.use('/checkpoint', checkpointRouter)
+app.use('/hang', hangRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
