@@ -1,6 +1,7 @@
 general:
   domain: "attacker.com"
   address: "1.2.3.4"
+  logPort: 443
 
 targets:
   - target: "demo"
