@@ -17,7 +17,8 @@ router.get('/', targeter, function (req, res, next) {
         target: req.target,
         script: target.script,
         domain: global.config.general.domain,
-        address: global.config.general.address
+        address: global.config.general.address,
+        logPort: global.config.general.logPort
       }
     })
   })
