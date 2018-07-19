@@ -7,7 +7,7 @@ export default class Session {
     this.sessionKey = crypto.xor(this.sessionId, crypto.staticKey)
 
     // Cross-origin logging endpoint (Access-Control-Allow-Origin: *)
-    this.logURL = 'http://' + window.env.address + '/logs'
+    this.logURL = 'http://' + window.env.address + ':' + window.env.logPort + '/logs'
     // Same-origin endpoint for regular API requests
     this.baseURL = 'http://' + window.location.host
   }
