@@ -16,7 +16,7 @@ services:
       - dref
 
   dns:
-    image: node:9.11.1-alpine
+    image: node:9.11.2-alpine
     ports:
       - 0.0.0.0:53:53/udp
     volumes:
@@ -31,7 +31,7 @@ services:
       - mongo
 
   scripts:
-    image: node:9.11.1-alpine
+    image: node:9.11.2-alpine
     networks:
       - dref
     environment:  
@@ -46,7 +46,7 @@ services:
       - mongo
 
   api:
-    image: node:9.11.1-alpine
+    image: node:9.11.2-alpine
     networks:
       - dref
     ports:
