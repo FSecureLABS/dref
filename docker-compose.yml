@@ -26,7 +26,7 @@ services:
     working_dir: /src/
     networks:
       - dref
-    command: sh -c "npm install && npm run build && npm run start"
+    command: sh -c "npm install --production && npm run build && npm run start"
     depends_on:
       - mongo
 
@@ -61,7 +61,7 @@ services:
       - ./dref-config.yml:/tmp/dref-config.yml:ro
       - api_node_modules:/src/node_modules
     working_dir: /src/
-    command: sh -c "npm install && npm run build && npm run start"
+    command: sh -c "npm install --production && npm run build && npm run start"
     depends_on:
       - mongo
       - scripts
