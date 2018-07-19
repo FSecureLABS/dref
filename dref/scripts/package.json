@@ -1,7 +1,7 @@
 {
   "name": "payload",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --progress --mode development --display-error-details"

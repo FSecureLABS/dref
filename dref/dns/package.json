@@ -1,7 +1,7 @@
 {
-  "name": "dns",
+  "name": "dns-server",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
   "main": "dist/server.js",
   "scripts": {
     "test": "eslint src/**/*.js tests/**/*.js && jest",
