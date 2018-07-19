@@ -20,10 +20,10 @@
     "express": "~4.16.0",
     "express-validator": "^5.2.0",
     "http-errors": "~1.6.2",
-    "jade": "~1.11.0",
     "mongoose": "^5.1.2",
     "morgan": "~1.9.0",
     "nodemon": "^1.17.4",
+    "pug": "^2.0.3",
     "request": "^2.87.0",
     "yamljs": "^0.3.0"
   },
