@@ -11,7 +11,7 @@
       <img src="https://badges.greenkeeper.io/serain/netmap.js.svg">
     </a>
     <a href="https://gitter.im/dref/Lobby/">
-      <img src="http://badges.gitter.im/serain/dref.png">
+      <img src="http://badges.gitter.im/serain/dref.svg">
     </a>
   </p>
 
