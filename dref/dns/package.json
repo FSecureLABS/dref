@@ -1,7 +1,7 @@
 {
-  "name": "dns",
+  "name": "dns-server",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
   "main": "dist/server.js",
   "scripts": {
     "test": "eslint src/**/*.js tests/**/*.js && jest",
@@ -12,9 +12,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-jest": "^23.0.1",
-    "babel-preset-env": "^1.7.0",
     "codecov": "^3.0.2",
     "eslint": "^5.0.1",
     "eslint-config-standard": "^11.0.0",
@@ -32,6 +29,9 @@
     "testEnvironment": "node"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^23.4.0",
+    "babel-preset-env": "^1.7.0",
     "mongoose": "^5.1.4",
     "yamljs": "^0.3.0"
   }

@@ -1,7 +1,10 @@
 general:
-  domain: attacker.com
-  address: 1.2.3.4
+  domain: "attacker.com"
+  address: "1.2.3.4"
 
 targets:
   - target: "demo"
     script: "web-discover"
+
+  - target: "sysinfo"
+    script: "sysinfo"
