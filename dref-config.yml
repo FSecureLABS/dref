@@ -9,3 +9,10 @@ targets:
 
   - target: "sysinfo"
     script: "sysinfo"
+
+  - target: "port-scan"
+    script: "port-scan"
+    args:
+      ports:
+        - 80
+        - 8080
