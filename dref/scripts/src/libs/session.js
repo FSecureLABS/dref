@@ -66,13 +66,13 @@ export default class Session {
           network.get(this.baseURL + '/checkpoint', function () {
             window.setTimeout(() => {
               console.log(time + ' - waiting for rebind')
-              wait(time * 2)
+              wait(time)
             }, time)
           }, function () {
             resolve()
           })
         }
-        wait(1000)
+        wait(2000)
       })
     })
   }
