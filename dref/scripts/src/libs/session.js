@@ -65,7 +65,6 @@ export default class Session {
         const wait = (time) => {
           network.get(this.baseURL + '/checkpoint', function () {
             window.setTimeout(() => {
-              console.log(time + ' - waiting for rebind')
               wait(time)
             }, time)
           }, function () {

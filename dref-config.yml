@@ -16,3 +16,10 @@ targets:
       ports:
         - 80
         - 8080
+
+  - target: "fetch-page"
+    script: "fetch-page"
+    args:
+      host: "192.168.1.1"
+      port: 80
+      path: "/index.html"
