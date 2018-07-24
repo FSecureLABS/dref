@@ -29,8 +29,8 @@ export default class Session {
     console.log('logged: ' + JSON.stringify(payload, null, 2))
   }
 
-  createRebindFrame (address, port, {script, args} = {}) {
-    const target = crypto.randomHex(24)
+  createRebindFrame (address, port, {target, script, args} = {}) {
+    target = target || crypto.randomHex(24)
     args = args || {}
     args._rebind = true
 
