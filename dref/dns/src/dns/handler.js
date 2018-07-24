@@ -21,7 +21,7 @@ export default class DNSHandler {
       }
 
       // A query (qtype === 1)
-      this._lookup(query.qname).then(address => {
+      this._lookup(query.qname.toLowerCase()).then(address => {
         if (address) {
           resolve(new DNSAnswer(query.id, query.qname, query.qtype, address))
         } else if (query.qname.endsWith(global.config.general.domain)) {
