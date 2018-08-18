@@ -9,7 +9,7 @@
     "dev": "nodemon --legacy-watch --ignore 'dist/*' --exec 'npm run build && node' dist/bin/www"
   },
   "dependencies": {
-    "atob": "^2.1.1",
+    "atob": "^2.1.2",
     "babel-cli": "^6.26.0",
     "babel-jest": "^23.4.0",
     "babel-preset-env": "^1.7.0",
