@@ -20,7 +20,7 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "jest": "^23.1.0",
-    "mongodb-memory-server": "^1.8.0",
+    "mongodb-memory-server": "^2.0.0",
     "nodemon": "^1.17.5"
   },
   "jest": {
