@@ -61,6 +61,8 @@ function rebindFrame () {
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br />
 Head over to the [Wiki](https://github.com/mwrlabs/dref/wiki) to get started.
+<br />
+Check out [dref attacking headless browsers](https://labs.mwrinfosecurity.com/blog/from-http-referer-to-aws-security-credentials/).
 
 <dl>
   <p align="center">
