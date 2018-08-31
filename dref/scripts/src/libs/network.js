@@ -35,6 +35,26 @@ export function get (url, successCb, failCb) {
   xhr.send()
 }
 
+export function post (url, data, successCb, failCb) {
+  const xhr = new XMLHttpRequest()
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status >= 200 && xhr.status < 400 && typeof successCb === 'function') {
+        successCb(xhr.status, xhr.getAllResponseHeaders, xhr.response)
+      } else if (typeof failCb === 'function') {
+        failCb(xhr.status, xhr.getAllResponseHeaders(), xhr.response)
+      }
+    }
+  }
+
+  xhr.open('POST', url, true)
+  xhr.setRequestHeader('Pragma', 'no-cache')
+  xhr.setRequestHeader('Cache-Control', 'no-cache')
+  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+  xhr.send(data)
+}
+
 // https://github.com/muaz-khan/DetectRTC/blob/master/DetectRTC.js
 export function webRTCSupported () {
   var supported = false;
