@@ -15,7 +15,7 @@ var TargetSchema = new mongoose.Schema({
     default: false
   },
   args: mongoose.Schema.Types.Mixed
-}, {timestamps: true})
+}, { timestamps: true })
 
 let Target = mongoose.model('Target', TargetSchema)
 

@@ -17,7 +17,7 @@ async function mainFrame () {
 function rebindFrame () {
   session.triggerRebind().then(() => {
     network.get(session.baseURL + window.args.path, (code, headers, body) => {
-      session.log({code: code, headers: headers, body: body})
+      session.log({ code: code, headers: headers, body: body })
     })
   })
 }

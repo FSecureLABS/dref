@@ -5,13 +5,13 @@ import atob from 'atob'
  * This is _NOT_ intended to enable secure transmission of data.
  * This is _NOT_ intended to be secure cryptography.
  * This is just some obfuscation.
- * 
+ *
  * It's only intended to very slightly slow down someone investigating the
  * network traffic.
- * 
+ *
  * In the future this will be improved and obfuscation of the JavaScript
  * payloads will slow down investigative efforts some more.
- * 
+ *
  * Obfuscation is only really a concern for potential use in Red Team exercises.
  */
 

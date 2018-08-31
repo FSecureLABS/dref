@@ -13,8 +13,8 @@ beforeAll(async () => {
   await mongoose.connect(mongoUri, {}, (err) => {
     if (err) console.error(err)
   })
-  await ARecord.create({domain: 'x.hello.com', address: '1.2.3.4', rebind: 'false'})
-  await ARecord.create({domain: 'y.hello.com', address: '1.2.3.4', rebind: 'true'})
+  await ARecord.create({ domain: 'x.hello.com', address: '1.2.3.4', rebind: 'false' })
+  await ARecord.create({ domain: 'y.hello.com', address: '1.2.3.4', rebind: 'true' })
 })
 
 afterAll(() => {
@@ -23,9 +23,9 @@ afterAll(() => {
 })
 
 test('returns answer with address for A record of default domain', async () => {
-  global.config = {general: {domain: 'helloworld.com', address: '10.0.0.1'}}
+  global.config = { general: { domain: 'helloworld.com', address: '10.0.0.1' } }
   const handler = new DNSHandler()
-  const rinfo = {address: '127.0.0.1', port: '1234'}
+  const rinfo = { address: '127.0.0.1', port: '1234' }
   // $ dig a helloworld.com @localhost
   const queryData = Buffer.from([
     0xed, 0x0f, 0x01, 0x20, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
@@ -41,9 +41,9 @@ test('returns answer with address for A record of default domain', async () => {
 
 test('returns answer without address for A record of unknown domain', async () => {
   // $ dig a helloworld.com @localhost
-  global.config = {general: {domain: 'domain.example', address: '10.0.0.1'}}
+  global.config = { general: { domain: 'domain.example', address: '10.0.0.1' } }
   const handler = new DNSHandler()
-  const rinfo = {address: '127.0.0.1', port: '1234'}
+  const rinfo = { address: '127.0.0.1', port: '1234' }
   const queryData = Buffer.from([
     0xed, 0x0f, 0x01, 0x20, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
     0x0a, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x03,
@@ -58,9 +58,9 @@ test('returns answer without address for A record of unknown domain', async () =
 
 test('returns answer without address for non-A record', async () => {
   // $ dig a helloworld.com @localhost
-  global.config = {general: {domain: 'domain.example', address: '10.0.0.1'}}
+  global.config = { general: { domain: 'domain.example', address: '10.0.0.1' } }
   const handler = new DNSHandler()
-  const rinfo = {address: '127.0.0.1', port: '1234'}
+  const rinfo = { address: '127.0.0.1', port: '1234' }
   const queryData = Buffer.from([
     0xed, 0x0f, 0x01, 0x20, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
     0x0a, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x03,
@@ -74,9 +74,9 @@ test('returns answer without address for non-A record', async () => {
 })
 
 test('returns null on parsing error', async () => {
-  global.config = {general: {domain: 'hello.com', address: '10.0.0.1'}}
+  global.config = { general: { domain: 'hello.com', address: '10.0.0.1' } }
   const handler = new DNSHandler()
-  const rinfo = {address: '127.0.0.1', port: '1234'}
+  const rinfo = { address: '127.0.0.1', port: '1234' }
   const queryData = Buffer.from([0x00])
 
   await handler.query(queryData, rinfo).then(answer => {
@@ -85,7 +85,7 @@ test('returns null on parsing error', async () => {
 })
 
 test('_lookup() returns default address for existing record when no rebind', async () => {
-  global.config = {general: {domain: 'hello.com', address: '10.0.0.1'}}
+  global.config = { general: { domain: 'hello.com', address: '10.0.0.1' } }
 
   await (new DNSHandler())._lookup('x.hello.com').then(address => {
     expect(address).toEqual('10.0.0.1')
@@ -93,7 +93,7 @@ test('_lookup() returns default address for existing record when no rebind', asy
 })
 
 test('_lookup() returns defined address for existing record when rebind', async () => {
-  global.config = {general: {domain: 'hello.com', address: '10.0.0.1'}}
+  global.config = { general: { domain: 'hello.com', address: '10.0.0.1' } }
 
   await (new DNSHandler())._lookup('y.hello.com').then(address => {
     expect(address).toEqual('1.2.3.4')
@@ -107,9 +107,9 @@ test('_lookup() returns null for unknown record', async () => {
 })
 
 test('returns answer with default address for A record when no rebind', async () => {
-  global.config = {general: {domain: 'hello.com', address: '10.0.0.1'}}
+  global.config = { general: { domain: 'hello.com', address: '10.0.0.1' } }
   const handler = new DNSHandler()
-  const rinfo = {address: '127.0.0.1', port: '1234'}
+  const rinfo = { address: '127.0.0.1', port: '1234' }
   // $ dig a x.hello.com @localhost
   const queryData = Buffer.from([
     0xaa, 0xaa, 0x01, 0x20, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
@@ -124,9 +124,9 @@ test('returns answer with default address for A record when no rebind', async ()
 })
 
 test('returns answer with defined address for A record when rebind', async () => {
-  global.config = {general: {domain: 'hello.com', address: '10.0.0.1'}}
+  global.config = { general: { domain: 'hello.com', address: '10.0.0.1' } }
   const handler = new DNSHandler()
-  const rinfo = {address: '127.0.0.1', port: '1234'}
+  const rinfo = { address: '127.0.0.1', port: '1234' }
   // $ dig a y.hello.com @localhost
   const queryData = Buffer.from([
     0xaa, 0xaa, 0x01, 0x20, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,

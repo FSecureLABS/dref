@@ -59,7 +59,7 @@ export function getLocalIP () {
     }
 
     window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection
-    var pc = new RTCPeerConnection({iceServers: []})
+    var pc = new RTCPeerConnection({ iceServers: [] })
     var noop = function () {}
     var localIP
 

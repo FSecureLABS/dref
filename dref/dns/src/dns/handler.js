@@ -35,7 +35,7 @@ export default class DNSHandler {
 
   _lookup (domain) {
     return new Promise((resolve) => {
-      ARecord.findOne({domain: domain}, (err, record) => {
+      ARecord.findOne({ domain: domain }, (err, record) => {
         if (err || record === null) resolve(null)
         else if (record.rebind) resolve(record.address)
         else resolve(global.config.general.address)
