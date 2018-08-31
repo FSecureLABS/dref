@@ -19,7 +19,7 @@ router.post('/', [
 
   console.log('dref: POST ARecord\n' + JSON.stringify(req.body, null, 4))
 
-  const record = {domain: req.body.domain}
+  const record = { domain: req.body.domain }
   if (typeof req.body.address !== 'undefined') record.address = req.body.address
   if (typeof req.body.rebind !== 'undefined') record.rebind = req.body.rebind
 

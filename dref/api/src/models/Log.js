@@ -12,7 +12,7 @@ var LogSchema = new mongoose.Schema({
     required: true
   },
   data: mongoose.Schema.Types.Mixed
-}, {timestamps: true})
+}, { timestamps: true })
 
 let Log = mongoose.model('Log', LogSchema)
 
