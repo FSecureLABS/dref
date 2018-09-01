@@ -16,20 +16,25 @@ export function postJSON (url, data, successCb, failCb) {
   xhr.send(JSON.stringify(data))
 }
 
-export function get (url, successCb, failCb) {
+export function get (url, successCb, failCb, timeoutCb) {
   const xhr = new XMLHttpRequest()
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       if (xhr.status >= 200 && xhr.status < 400 && typeof successCb === 'function') {
-        successCb(xhr.status, xhr.getAllResponseHeaders, xhr.response)
+        successCb(xhr.status, xhr.getAllResponseHeaders(), xhr.response)
       } else if (typeof failCb === 'function') {
         failCb(xhr.status, xhr.getAllResponseHeaders(), xhr.response)
       }
     }
   }
 
+  xhr.ontimeout = function () {
+    timeoutCb()
+  }
+
   xhr.open('GET', url, true)
+  xhr.timeout = 5000
   xhr.setRequestHeader('Pragma', 'no-cache')
   xhr.setRequestHeader('Cache-Control', 'no-cache')
   xhr.send()

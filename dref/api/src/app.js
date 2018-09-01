@@ -5,6 +5,7 @@ import logger from 'morgan'
 import mongoose from 'mongoose'
 import YAML from 'yamljs'
 import cors from 'cors'
+import * as iptables from './utils/iptables'
 
 /**
  * Mongo
@@ -32,7 +33,8 @@ for (let i = 0; i < global.config.targets.length; i++) {
   let doc = {
     target: global.config.targets[i].target,
     script: global.config.targets[i].script,
-    hang: global.config.targets[i].hang,
+    hang: global.config.targets[i].hang || false,
+    fastRebind: global.config.targets[i].fastRebind || false,
     args: global.config.targets[i].args
   }
 
@@ -42,12 +44,37 @@ for (let i = 0; i < global.config.targets.length; i++) {
 }
 
 /**
+ * Set up default iptable rules to forward all ports to the API
+ */
+iptables.execute({
+  table: iptables.Table.NAT,
+  command: iptables.Command.INSERT,
+  chain: iptables.Chain.PREROUTING,
+  target: iptables.Target.REDIRECT,
+  toPort: process.env.PORT || '3000'
+})
+
+/**
+ * Set up default iptable rules to REJECT all traffic to dport 1
+ * This is used for denying traffic and causing a fast-rebind, when configured
+ * (the /iptables route will forward denied traffic to dport 1 on rebind)
+ */
+iptables.execute({
+  table: iptables.Table.FILTER,
+  command: iptables.Command.INSERT,
+  chain: iptables.Chain.INPUT,
+  target: iptables.Target.REJECT,
+  fromPort: 1
+})
+
+/**
  * Import routes
  */
 import indexRouter from './routes/index'
 import logsRouter from './routes/logs'
 import scriptsRouter from './routes/scripts'
 import aRecordsRouter from './routes/arecords'
+import iptablesRouter from './routes/iptables'
 import targetsRouter from './routes/targets'
 import checkpointRouter from './routes/checkpoint'
 import hangRouter from './routes/hang'
@@ -61,6 +88,7 @@ app.disable('x-powered-by')
 app.set('etag', false)
 
 app.options('/logs', cors())
+app.options('/iptables', cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -75,6 +103,7 @@ app.use('/', indexRouter)
 app.use('/logs', logsRouter)
 app.use('/scripts', scriptsRouter)
 app.use('/arecords', aRecordsRouter)
+app.use('/iptables', iptablesRouter)
 app.use('/targets', targetsRouter)
 app.use('/checkpoint', checkpointRouter)
 app.use('/hang', hangRouter)

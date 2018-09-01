@@ -6,7 +6,7 @@ const router = Router()
 const Target = mongoose.model('Target')
 
 router.get('/', targeter, function (req, res, next) {
-  Target.findOne({ target: req.target }, 'script hang args', function (err, target) {
+  Target.findOne({ target: req.target }, 'script hang args fastRebind', function (err, target) {
     if (err || !target) return res.status(400).send()
 
     res.render('index', {
@@ -18,7 +18,8 @@ router.get('/', targeter, function (req, res, next) {
         script: target.script,
         domain: global.config.general.domain,
         address: global.config.general.address,
-        logPort: global.config.general.logPort
+        logPort: global.config.general.logPort,
+        fastRebind: target.fastRebind
       }
     })
   })

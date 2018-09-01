@@ -35,7 +35,7 @@ test('returns answer with address for A record of default domain', async () => {
   ])
 
   await handler.query(queryData, rinfo).then(answer => {
-    expect(answer.address).toBeTruthy()
+    expect(answer.addresses).toBeTruthy()
   })
 })
 
@@ -52,7 +52,7 @@ test('returns answer without address for A record of unknown domain', async () =
   ])
 
   await handler.query(queryData, rinfo).then(answer => {
-    expect(answer.address).toBeNull()
+    expect(answer.addresses.length).toEqual(0)
   })
 })
 
@@ -69,7 +69,7 @@ test('returns answer without address for non-A record', async () => {
   ])
 
   await handler.query(queryData, rinfo).then(answer => {
-    expect(answer.address).toBeNull()
+    expect(answer.addresses.length).toEqual(0)
   })
 })
 
@@ -84,6 +84,17 @@ test('returns null on parsing error', async () => {
   })
 })
 
+<<<<<<< HEAD
+test('_lookup() returns a known record', async () => {
+  global.config = {general: {domain: 'hello.com', address: '10.0.0.1'}}
+
+  await (new DNSHandler())._lookup('x.hello.com').then(record => {
+    expect(record).toMatchObject({
+      domain: 'x.hello.com',
+      address: '1.2.3.4',
+      rebind: false
+    })
+=======
 test('_lookup() returns default address for existing record when no rebind', async () => {
   global.config = { general: { domain: 'hello.com', address: '10.0.0.1' } }
 
@@ -97,6 +108,7 @@ test('_lookup() returns defined address for existing record when rebind', async 
 
   await (new DNSHandler())._lookup('y.hello.com').then(address => {
     expect(address).toEqual('1.2.3.4')
+>>>>>>> 387779f29212e13ab169a22f3eef5e30134a4575
   })
 })
 
@@ -119,7 +131,7 @@ test('returns answer with default address for A record when no rebind', async ()
   ])
 
   await handler.query(queryData, rinfo).then(answer => {
-    expect(answer.address).toEqual('10.0.0.1')
+    expect(answer.addresses).toEqual(['10.0.0.1'])
   })
 })
 
@@ -136,6 +148,6 @@ test('returns answer with defined address for A record when rebind', async () =>
   ])
 
   await handler.query(queryData, rinfo).then(answer => {
-    expect(answer.address).toEqual('1.2.3.4')
+    expect(answer.addresses).toEqual(['1.2.3.4'])
   })
 })

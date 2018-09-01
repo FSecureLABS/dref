@@ -14,6 +14,10 @@ var TargetSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  fastRebind: {
+    type: Boolean,
+    default: false
+  },
   args: mongoose.Schema.Types.Mixed
 }, { timestamps: true })
 

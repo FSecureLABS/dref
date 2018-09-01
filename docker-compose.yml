@@ -46,17 +46,21 @@ services:
       - mongo
 
   api:
-    image: node:9.11.2-alpine
+    build:
+      context: .
+      dockerfile: iptables-node-alpine.Dockerfile
     networks:
       - dref
+    cap_add:
+      - NET_ADMIN
     ports:
       - 0.0.0.0:80:80
-      - 0.0.0.0:443:80
-      - 0.0.0.0:8000:80
-      - 0.0.0.0:8080:80
-      - 0.0.0.0:8888:80
+      - 0.0.0.0:443:443
+      - 0.0.0.0:8000:8000
+      - 0.0.0.0:8080:8080
+      - 0.0.0.0:8888:8888
     environment:
-      - PORT=80
+      - PORT=45000
     volumes:
       - ./dref/api/:/src:rw
       - ./dref-config.yml:/tmp/dref-config.yml:ro

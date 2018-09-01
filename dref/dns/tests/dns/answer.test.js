@@ -1,16 +1,16 @@
 import DNSAnswer from '../../src/dns/answer'
 
 test('creates DNS answer', () => {
-  const answer = new DNSAnswer(0xabab, 'test.random.co.uk', 1, '192.168.1.1')
+  const answer = new DNSAnswer(0xabab, 'test.random.co.uk', 1, ['192.168.1.1'])
 
   expect(answer.id).toEqual(0xabab)
   expect(answer.qname).toEqual('test.random.co.uk')
   expect(answer.qtype).toEqual(1)
-  expect(answer.address).toEqual('192.168.1.1')
+  expect(answer.addresses).toEqual(['192.168.1.1'])
 })
 
 test('creates header Buffer with ancount "1" when address present', () => {
-  const answer = new DNSAnswer(0xabab, 'test.random.co.uk', 1, '192.168.1.1')
+  const answer = new DNSAnswer(0xabab, 'test.random.co.uk', 1, ['192.168.1.1'])
 
   const expectedBuffer = Buffer.from([
     0xab, 0xab, // id
@@ -54,7 +54,7 @@ test('creates question Buffer with constructor params', () => {
 })
 
 test('creates answer Buffer with constructor params', () => {
-  const answer = new DNSAnswer(0xabab, 'x.abc.com', 1, '255.255.255.255')
+  const answer = new DNSAnswer(0xabab, 'x.abc.com', 1, ['255.255.255.255'])
 
   const expectedBuffer = Buffer.from([
     0xc0, 0x0c, // name pointer to first byte of question
@@ -69,7 +69,7 @@ test('creates answer Buffer with constructor params', () => {
 })
 
 test('creates Buffer with answer', () => {
-  const answer = new DNSAnswer(0xabab, 'x.abc.com', 1, '255.255.255.255')
+  const answer = new DNSAnswer(0xabab, 'x.abc.com', 1, ['255.255.255.255'])
 
   const expectedBuffer = Buffer.from([
     // header

@@ -2,6 +2,7 @@ general:
   domain: "attacker.com"
   address: "1.2.3.4"
   logPort: 443
+  iptablesTimeout: 10000
 
 targets:
   - target: "demo"
@@ -19,6 +20,14 @@ targets:
 
   - target: "fetch-page"
     script: "fetch-page"
+    args:
+      host: "192.168.1.1"
+      port: 80
+      path: "/index.html"
+
+  - target: "fast-rebind"
+    script: "fast-rebind"
+    fastRebind: true
     args:
       host: "192.168.1.1"
       port: 80

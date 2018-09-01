@@ -10,6 +10,7 @@ router.post('/', [
   check('target').matches(/^[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]$/),
   check('script').isString(),
   check('hang').optional().isBoolean(),
+  check('fastRebind').optional().isBoolean(),
   check('args').optional()
 ], function (req, res, next) {
   const errors = validationResult(req)
@@ -25,6 +26,7 @@ router.post('/', [
     script: req.body.script
   }
   if (typeof req.body.hang !== 'undefined') record.hang = req.body.hang
+  if (typeof req.body.fastRebind !== 'undefined') record.fastRebind = req.body.fastRebind
   if (typeof req.body.args !== 'undefined') record.args = req.body.args
 
   Target.findOneAndUpdate({
