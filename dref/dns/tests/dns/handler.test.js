@@ -15,6 +15,7 @@ beforeAll(async () => {
   })
   await ARecord.create({ domain: 'x.hello.com', address: '1.2.3.4', rebind: 'false' })
   await ARecord.create({ domain: 'y.hello.com', address: '1.2.3.4', rebind: 'true' })
+  await ARecord.create({ domain: 'z.hello.com', address: '1.2.3.4', rebind: 'true', dual: 'true' })
 })
 
 afterAll(() => {
