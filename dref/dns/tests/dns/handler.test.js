@@ -136,3 +136,20 @@ test('returns answer with defined address for A record when rebind', async () =>
     expect(answer.addresses).toEqual(['1.2.3.4'])
   })
 })
+
+test('returns answer with two addresses for dual record', async () => {
+  global.config = { general: { domain: 'hello.com', address: '10.0.0.1' } }
+  const handler = new DNSHandler()
+  const rinfo = { address: '127.0.0.1', port: '1234' }
+  // $ dig a z.hello.com @localhost
+  const queryData = Buffer.from([
+    0xaa, 0xaa, 0x01, 0x20, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
+    0x01, 0x7a, 0x05, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x03, 0x63, 0x6f, 0x6d,
+    0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x29, 0x10, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00
+  ])
+
+  await handler.query(queryData, rinfo).then(answer => {
+    expect(answer.addresses).toEqual(['10.0.0.1', '1.2.3.4'])
+  })
+})
