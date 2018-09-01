@@ -84,9 +84,8 @@ test('returns null on parsing error', async () => {
   })
 })
 
-<<<<<<< HEAD
 test('_lookup() returns a known record', async () => {
-  global.config = {general: {domain: 'hello.com', address: '10.0.0.1'}}
+  global.config = { general: { domain: 'hello.com', address: '10.0.0.1' } }
 
   await (new DNSHandler())._lookup('x.hello.com').then(record => {
     expect(record).toMatchObject({
@@ -94,21 +93,6 @@ test('_lookup() returns a known record', async () => {
       address: '1.2.3.4',
       rebind: false
     })
-=======
-test('_lookup() returns default address for existing record when no rebind', async () => {
-  global.config = { general: { domain: 'hello.com', address: '10.0.0.1' } }
-
-  await (new DNSHandler())._lookup('x.hello.com').then(address => {
-    expect(address).toEqual('10.0.0.1')
-  })
-})
-
-test('_lookup() returns defined address for existing record when rebind', async () => {
-  global.config = { general: { domain: 'hello.com', address: '10.0.0.1' } }
-
-  await (new DNSHandler())._lookup('y.hello.com').then(address => {
-    expect(address).toEqual('1.2.3.4')
->>>>>>> 387779f29212e13ab169a22f3eef5e30134a4575
   })
 })
 

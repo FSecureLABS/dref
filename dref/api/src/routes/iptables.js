@@ -2,7 +2,6 @@ import { Router } from 'express'
 import { check, validationResult } from 'express-validator/check'
 import cors from 'cors'
 import * as iptables from '../utils/iptables'
-import { resolve } from 'url';
 
 const router = Router()
 
@@ -24,7 +23,7 @@ function runIPTables (command, port, address) {
 
 router.post('/', cors(), [
   check('block').optional().isBoolean(),
-  check('port').optional().isInt({min: 1, max: 65535})
+  check('port').optional().isInt({ min: 1, max: 65535 })
 ], function (req, res, next) {
   const errors = validationResult(req)
 

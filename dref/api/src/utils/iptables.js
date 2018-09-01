@@ -1,4 +1,4 @@
-import {spawn} from 'child_process'
+import { spawn } from 'child_process'
 
 export const Command = Object.freeze({
   APPEND: '-A',
@@ -23,7 +23,7 @@ export const Chain = Object.freeze({
   PREROUTING: 'PREROUTING'
 })
 
-function getRule ({table, command, chain, target, fromPort, toPort, srcAddress}) {
+function getRule ({ table, command, chain, target, fromPort, toPort, srcAddress }) {
   fromPort = fromPort || null
   toPort = toPort || null
   srcAddress = srcAddress || null
@@ -38,7 +38,7 @@ function getRule ({table, command, chain, target, fromPort, toPort, srcAddress})
 
   args = args.concat(['-j', target])
 
-  if (target == Target.REJECT) args = args.concat(['--reject-with', 'tcp-reset'])
+  if (target === Target.REJECT) args = args.concat(['--reject-with', 'tcp-reset'])
   if (toPort) args = args.concat(['--to-port', toPort])
 
   return args
@@ -56,7 +56,7 @@ function checkRuleExists (args) {
   })
 }
 
-export function execute ({table, command, chain, target, fromPort, toPort, srcAddress} = {}) {
+export function execute ({ table, command, chain, target, fromPort, toPort, srcAddress } = {}) {
   return new Promise((resolve, reject) => {
     fromPort = fromPort || null
     toPort = toPort || null

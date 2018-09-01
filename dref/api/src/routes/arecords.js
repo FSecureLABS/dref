@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 import { Router } from 'express'
 import { check, validationResult } from 'express-validator/check'
-import * as iptables from '../utils/iptables'
 
 const router = Router()
 const ARecord = mongoose.model('ARecord')
