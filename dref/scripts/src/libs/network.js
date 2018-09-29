@@ -1,6 +1,6 @@
 import IPCIDR from 'ip-cidr'
 
-export function postJSON (url, data, successCb, failCb) {
+export function postJSON (url, data, { successCb, failCb, timeoutCb } = {}) {
   const xhr = new XMLHttpRequest()
 
   xhr.onreadystatechange = function () {
@@ -11,12 +11,16 @@ export function postJSON (url, data, successCb, failCb) {
     }
   }
 
+  xhr.ontimeout = function () {
+    timeoutCb()
+  }
+
   xhr.open('POST', url, true)
   xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8')
   xhr.send(JSON.stringify(data))
 }
 
-export function get (url, successCb, failCb, timeoutCb) {
+export function get (url, { successCb, failCb, timeoutCb } = {}) {
   const xhr = new XMLHttpRequest()
 
   xhr.onreadystatechange = function () {
@@ -40,7 +44,7 @@ export function get (url, successCb, failCb, timeoutCb) {
   xhr.send()
 }
 
-export function post (url, data, successCb, failCb) {
+export function post (url, data, { successCb, failCb, timeoutCb } = {}) {
   const xhr = new XMLHttpRequest()
 
   xhr.onreadystatechange = function () {
@@ -51,6 +55,10 @@ export function post (url, data, successCb, failCb) {
         failCb(xhr.status, xhr.getAllResponseHeaders(), xhr.response)
       }
     }
+  }
+
+  xhr.ontimeout = function () {
+    timeoutCb()
   }
 
   xhr.open('POST', url, true)
