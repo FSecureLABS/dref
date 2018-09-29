@@ -1,6 +1,6 @@
 import IPCIDR from 'ip-cidr'
 
-export function postJSON (url, data, successCb, failCb) {
+export function postJSON (url, data, { headers, successCb, failCb, timeoutCb } = {}) {
   const xhr = new XMLHttpRequest()
 
   xhr.onreadystatechange = function () {
@@ -11,12 +11,22 @@ export function postJSON (url, data, successCb, failCb) {
     }
   }
 
+  xhr.ontimeout = function () {
+    timeoutCb()
+  }
+
   xhr.open('POST', url, true)
   xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8')
+
+  // set headers
+  for (let header in headers) {
+    xhr.setRequestHeader(header, headers[header])
+  }
+
   xhr.send(JSON.stringify(data))
 }
 
-export function get (url, successCb, failCb, timeoutCb) {
+export function get (url, { headers, successCb, failCb, timeoutCb } = {}) {
   const xhr = new XMLHttpRequest()
 
   xhr.onreadystatechange = function () {
@@ -37,10 +47,16 @@ export function get (url, successCb, failCb, timeoutCb) {
   xhr.timeout = 5000
   xhr.setRequestHeader('Pragma', 'no-cache')
   xhr.setRequestHeader('Cache-Control', 'no-cache')
+
+  // set headers
+  for (let header in headers) {
+    xhr.setRequestHeader(header, headers[header])
+  }
+
   xhr.send()
 }
 
-export function post (url, data, successCb, failCb) {
+export function post (url, data, { headers, successCb, failCb, timeoutCb } = {}) {
   const xhr = new XMLHttpRequest()
 
   xhr.onreadystatechange = function () {
@@ -53,10 +69,20 @@ export function post (url, data, successCb, failCb) {
     }
   }
 
+  xhr.ontimeout = function () {
+    timeoutCb()
+  }
+
   xhr.open('POST', url, true)
   xhr.setRequestHeader('Pragma', 'no-cache')
   xhr.setRequestHeader('Cache-Control', 'no-cache')
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+
+  // set headers
+  for (let header in headers) {
+    xhr.setRequestHeader(header, headers[header])
+  }
+
   xhr.send(data)
 }
 

