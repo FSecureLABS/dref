@@ -21,7 +21,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^23.1.0",
     "mongodb-memory-server": "^2.0.0",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.18.7"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
