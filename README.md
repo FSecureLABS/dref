@@ -66,6 +66,6 @@ Head over to the [Wiki](https://github.com/mwrlabs/dref/wiki) to get started or 
 
 <dl>
   <p align="center">
-    <sub><i>This is a development release - <b>do not use in production</b></i></sub>
+    <sub><i>This is a development release, <b>do not use in production</b></i></sub>
   </p>
 </dl>
