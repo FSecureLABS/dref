@@ -7,9 +7,6 @@
   <p align="center">
     <img src="https://travis-ci.com/mwrlabs/dref.svg?branch=master">
     <img src="https://codecov.io/gh/mwrlabs/dref/branch/master/graph/badge.svg">
-    <a href="https://greenkeeper.io/">
-      <img src="https://badges.greenkeeper.io/serain/netmap.js.svg">
-    </a>
     <a href="https://gitter.im/dref/Lobby/">
       <img src="http://badges.gitter.im/serain/dref.svg">
     </a>
