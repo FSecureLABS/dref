@@ -16,7 +16,7 @@ async function mainFrame () {
   let attemptIds = []
 
   // receiving a message from child frame means rebinding was successful
-  window.addEventListener('message', function() {
+  window.addEventListener('message', function () {
     for (let id of attemptIds) {
       clearTimeout(id)
     }
