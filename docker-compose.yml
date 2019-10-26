@@ -12,6 +12,7 @@ networks:
 services:
   mongo:
     image: mongo:3.6.5-jessie
+    restart: on-failure
     networks:
       - dref
 
@@ -27,6 +28,7 @@ services:
     networks:
       - dref
     command: sh -c "npm install --production && npm run build && npm run start"
+    restart: on-failure
     depends_on:
       - mongo
 
@@ -42,6 +44,7 @@ services:
       - scripts_node_modules:/src/node_modules
     working_dir: /src/
     command: sh -c "npm install && npm run dev"
+    restart: on-failure
     depends_on:
       - mongo
 
