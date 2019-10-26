@@ -82,7 +82,7 @@ export default class Session {
       // flush Chrome's DNS cache - faster rebinding
       for (let i = 0; i < 1024; i++) {
         let url = 'http://' + i + '.' + window.env.domain
-        fetch(url, {mode: 'no-cors'})
+        fetch(url, { mode: 'no-cors' })
       }
 
       // wait for rebinding to occur
