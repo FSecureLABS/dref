@@ -8,6 +8,10 @@ async function mainFrame () {
   const netmap = new NetMap()
   const localSubnet = await network.getLocalSubnet(24)
 
+  console.log(localSubnet)
+  let x = localSubnet.pop().shift()
+  console.log(x)
+
   netmap.pingSweep(localSubnet).then(sweepResults => {
     session.log(sweepResults)
 
