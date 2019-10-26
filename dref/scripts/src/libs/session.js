@@ -79,10 +79,10 @@ export default class Session {
         }
       })
 
-      // flush browser's DNS cache
-      for (let i = 0; i < 1000; i++) {
+      // flush Chrome's DNS cache - faster rebinding
+      for (let i = 0; i < 1024; i++) {
         let url = 'http://' + i + '.' + window.env.domain
-        network.get(url)
+        fetch(url, {mode: 'no-cors'})
       }
 
       // wait for rebinding to occur
