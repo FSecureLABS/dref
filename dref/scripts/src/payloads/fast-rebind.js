@@ -21,13 +21,15 @@ async function mainFrame () {
   window.addEventListener("message", receiveMessage, false)
   // end testing iframe communication
 
-  session.createRebindFrame(window.args.host, window.args.port, {
-    // enable fastRebind
-    fastRebind: true,
-    args: {
-      path: window.args.path
-    }
-  })
+  for (let i = 0; i < 3; i++) {
+    session.createRebindFrame(window.args.host, window.args.port, {
+      // enable fastRebind
+      fastRebind: true,
+      args: {
+        path: window.args.path
+      }
+    })
+  }
 }
 
 function rebindFrame () {
