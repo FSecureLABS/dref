@@ -32,3 +32,7 @@ targets:
       host: "192.168.1.1"
       port: 80
       path: "/index.html"
+
+  - target: "demo-scan"
+    script: "demo-scan"
+    fastRebind: true
