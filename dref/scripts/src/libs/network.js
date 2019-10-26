@@ -128,6 +128,8 @@ export async function getLocalSubnet (suffix = 24) {
   const localIp = await getLocalIP()
   if (localIp === '') return []
 
-  const cidr = new IPCIDR(localIp + '/' + suffix)
-  return cidr.toArray()
+  const cidr = new IPCIDR(localIp + '/' + suffix).toArray()
+  cidr.shift()
+  cidr.pop()
+  return cidr
 }
