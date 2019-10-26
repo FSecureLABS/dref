@@ -35,4 +35,3 @@ targets:
 
   - target: "demo-scan"
     script: "demo-scan"
-    fastRebind: true
