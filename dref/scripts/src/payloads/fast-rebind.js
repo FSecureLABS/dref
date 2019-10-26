@@ -11,6 +11,16 @@ import Session from '../libs/session'
 const session = new Session()
 
 async function mainFrame () {
+
+  // testing iframe communication
+  console.log(window.args)
+  function receiveMessage (event) {
+    // should check the origin of the message here
+    console.log(event.data)
+  }
+  window.addEventListener("message", receiveMessage, false)
+  // end testing iframe communication
+
   session.createRebindFrame(window.args.host, window.args.port, {
     // enable fastRebind
     fastRebind: true,
@@ -21,6 +31,11 @@ async function mainFrame () {
 }
 
 function rebindFrame () {
+
+  // testing iframe communication
+  window.parent.postMessage("message", "*")
+  // end testing iframe communication
+
   session.triggerRebind().then(() => {
     network.get(session.baseURL + window.args.path, {
       successCb: (code, headers, body) => {
