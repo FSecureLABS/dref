@@ -12,6 +12,8 @@ networks:
 services:
   mongo:
     image: mongo:3.6.5-jessie
+    ports:
+      - 127.0.0.1:27017:27017
     restart: on-failure
     networks:
       - dref
