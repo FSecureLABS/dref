@@ -8,11 +8,16 @@ async function mainFrame () {
   const netmap = new NetMap()
   const localSubnet = await network.getLocalSubnet(24)
 
-  netmap.pingSweep(localSubnet).then(liveHosts => {
-    session.log(liveHosts)
+  netmap.pingSweep(localSubnet).then(sweepResults => {
+    session.log(sweepResults)
+    
+    liveHosts = sweepResults.hosts.filter((h) => {
+      if (h.live) return h.host
+    })
+
     console.log(liveHosts)
 
-    netmap.tcpScan(liveHosts.data.meta.hosts, [80, 8080, 9200]).then(results => {
+    netmap.tcpScan(liveHosts, [80, 8080, 9200]).then(results => {
       session.log(results)
       // for (let h of results.hosts) {
       //   for (let p of h.ports) {
