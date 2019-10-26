@@ -33,9 +33,8 @@ async function mainFrame () {
         path: window.args.path
       }
     })
-    window.setTimeout(() => {
-      attemptIds.push(attemptRebind(1000))
-      console.log('attempt ids here ' + attemptIds)
+    attemptIds.push(window.setTimeout(() => {
+      attemptRebind(1000)
     }, time)
   }
   attemptRebind(1000)
