@@ -67,6 +67,7 @@ services:
       - api_node_modules:/src/node_modules
     working_dir: /src/
     command: sh -c "npm install --production && npm run build && npm run start"
+    restart: on-failure
     depends_on:
       - mongo
       - scripts
