@@ -81,8 +81,8 @@ export default class Session {
 
       // flush browser's DNS cache
       for (let i = 0; i < 1000; i++) {
-          let url = 'http://' + i + '.' + window.env.domain
-          network.get(url)
+        let url = 'http://' + i + '.' + window.env.domain
+        network.get(url)
       }
 
       // wait for rebinding to occur
