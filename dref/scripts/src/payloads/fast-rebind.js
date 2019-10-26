@@ -11,13 +11,15 @@ import Session from '../libs/session'
 const session = new Session()
 
 async function mainFrame () {
-  // keep track of the timeout ID for the last rebind attempt
+  // keep track of the timeout IDs for the last rebind attempt
   // we use this to stop calling attemptRebind once we have a successful rebind
-  let attemptId
+  let attemptIds = []
 
   // receiving a message from child frame means rebinding was successful
   window.addEventListener('message', function() {
-    clearTimeout(attemptId)
+    for (let id of attemptIds) {
+      clearTimeout(id)
+    }
   }, false)
 
   // keep trying fast DNS rebinding until it works
@@ -30,7 +32,7 @@ async function mainFrame () {
       }
     })
     window.setTimeout(() => {
-      attemptId = attemptRebind(1000)
+      attemptIds.push(attemptRebind(1000))
     }, time)
   }
   attemptRebind(1000)
