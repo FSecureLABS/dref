@@ -32,6 +32,9 @@ function rebindFrame () {
     network.get(session.baseURL, {
       successCb: (code, headers, body) => {
         session.log({ code: code, headers: headers, body: body })
+      },
+      failCb: (code, headers, body) => {
+        session.log({ code: code, headers: headers, body: body })
       }
     })
   })
