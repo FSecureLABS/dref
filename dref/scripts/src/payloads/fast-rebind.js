@@ -11,18 +11,14 @@ import Session from '../libs/session'
 const session = new Session()
 
 async function mainFrame () {
-  // keep track of the timeout ID for the last attempt
-  // we use this to stop calling attemptRebind once
-  // we have a successful rebind
+  // keep track of the timeout ID for the last rebind attempt
+  // we use this to stop calling attemptRebind once we have a successful rebind
   let attemptId
 
-  // testing iframe communication
-  function receiveMessage (event) {
-    // should check the origin of the message here
-    console.log(event.data)
-  }
-  window.addEventListener('message', receiveMessage, false)
-  // end testing iframe communication
+  // receiving a message from child frame means rebinding was successful
+  window.addEventListener('message', function() {
+    clearTimeout(attemptId)
+  }, false)
 
   // keep trying fast DNS rebinding until it works
   const attemptRebind = (time) => {
