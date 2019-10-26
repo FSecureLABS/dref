@@ -75,6 +75,13 @@ export default class Session {
               port: this.sessionPort,
               block: true
             })
+          } else {
+            // flush Chrome's DNS cache - a bit less fast rebinding without the
+            // fastRebind mode overhead
+            for (let i = 0; i < 1024; i++) {
+              let url = 'http://' + i + '.' + window.env.domain
+              fetch(url, { mode: 'no-cors' })
+            }
           }
         }
       })

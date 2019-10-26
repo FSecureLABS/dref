@@ -38,7 +38,7 @@ for (let i = 0; i < global.config.targets.length; i++) {
     args: global.config.targets[i].args
   }
 
-  Target.update({target: global.config.targets[i].target}, doc, {upsert: true}, function () {
+  Target.update ({ target: global.config.targets[i].target }, doc, { upsert: true }, function () {
     console.log('dref: Configured target\n' + JSON.stringify(doc, null, 4))
   })
 }

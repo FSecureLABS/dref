@@ -9,7 +9,7 @@ export default class DNSHandler {
       try {
         query = new DNSQuestion(data)
       } catch (err) {
-        console.log(`parsing error: ${rinfo.address}:${rinfo.port} - ${data}`)
+        console.log(`parsing error: ${rinfo.address}:${rinfo.port}`)
         resolve(null)
       }
 
