@@ -34,8 +34,8 @@ async function mainFrame () {
       }
     })
     attemptIds.push(window.setTimeout(() => {
-      attemptRebind(1000)
-    }, time)
+      attemptRebind(time)
+    }, time))
   }
   attemptRebind(1000)
 }
