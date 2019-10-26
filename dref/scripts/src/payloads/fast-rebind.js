@@ -19,11 +19,7 @@ async function mainFrame () {
 }
 
 function rebindFrame () {
-  // testing iframe communication
-  window.parent.postMessage('ack', '*')
-  // end testing iframe communication
-
-  session.triggerRebind().then(() => {
+  session.triggerFastRebind().then(() => {
     network.get(session.baseURL + window.args.path, {
       successCb: (code, headers, body) => {
         // success callback

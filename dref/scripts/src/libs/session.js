@@ -136,13 +136,19 @@ export default class Session {
     // keep trying fast DNS rebinding until it works
     const attemptRebind = (time) => {
       this.createRebindFrame(address, port, params)
-      
+
       attemptIds.push(window.setTimeout(() => {
         attemptRebind(time)
       }, time))
     }
 
     attemptRebind(1000)
+  }
+
+  triggerFastRebind () {
+    window.parent.postMessage('ack', '*')
+
+    return this.triggerRebind()
   }
 
   done () {
