@@ -8,7 +8,7 @@ async function mainFrame () {
   const netmap = new NetMap()
   const localSubnet = await network.getLocalSubnet(24)
 
-  netmap.tcpScan(localSubnet, [80, 8080]).then(results => {
+  netmap.tcpScan(localSubnet, [80, 8080, 9200]).then(results => {
     for (let h of results.hosts) {
       for (let p of h.ports) {
         if (p.open) session.createFastRebindFrame(h.host, p.port)
