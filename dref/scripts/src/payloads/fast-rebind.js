@@ -11,39 +11,15 @@ import Session from '../libs/session'
 const session = new Session()
 
 async function mainFrame () {
-  // keep track of the timeout IDs for the last rebind attempt
-  // we use this to stop calling attemptRebind once we have a successful rebind
-  let attemptIds = []
-
-  // receiving a message from child frame means rebinding was successful
-  window.addEventListener('message', function () {
-    for (let id of attemptIds) {
-      clearTimeout(id)
+  session.createFastRebindFrame(window.args.host, window.args.port, {
+    args: {
+      path: window.args.path
     }
-  }, false)
-
-  // keep trying fast DNS rebinding until it works
-  const attemptRebind = (time) => {
-    session.createRebindFrame(window.args.host, window.args.port, {
-      // enable fastRebind
-      fastRebind: true,
-      args: {
-        path: window.args.path
-      }
-    })
-    attemptIds.push(window.setTimeout(() => {
-      attemptRebind(time)
-    }, time))
-  }
-  attemptRebind(1000)
+  })
 }
 
 function rebindFrame () {
-  // testing iframe communication
-  window.parent.postMessage('ack', '*')
-  // end testing iframe communication
-
-  session.triggerRebind().then(() => {
+  session.triggerFastRebind().then(() => {
     network.get(session.baseURL + window.args.path, {
       successCb: (code, headers, body) => {
         // success callback
