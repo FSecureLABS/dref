@@ -10,6 +10,7 @@ async function mainFrame () {
 
   netmap.pingSweep(localSubnet).then(liveHosts => {
     session.log(liveHosts)
+    console.log(liveHosts)
 
     netmap.tcpScan(liveHosts.data.meta.hosts, [80, 8080, 9200]).then(results => {
       session.log(results)
