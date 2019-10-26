@@ -20,7 +20,7 @@ async function mainFrame () {
 
       for (let h of results.hosts) {
         for (let p of h.ports) {
-          if (p.open) session.createRebindFrame(h.host, p.port)
+          if (p.open) session.createRebindFrame(h.host, p.port, { args: { 'host': h.host, 'port': p.port } })
         }
       }
     })
