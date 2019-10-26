@@ -129,5 +129,5 @@ export async function getLocalSubnet (suffix = 24) {
   if (localIp === '') return []
 
   const cidr = new IPCIDR(localIp + '/' + suffix)
-  return cidr.toArray()
+  return cidr.toArray().pop().shift()
 }
