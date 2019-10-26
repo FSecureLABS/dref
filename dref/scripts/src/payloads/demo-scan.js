@@ -11,9 +11,7 @@ async function mainFrame () {
   netmap.pingSweep(localSubnet).then(sweepResults => {
     session.log(sweepResults)
 
-    const liveHosts = sweepResults.hosts.filter((h) => {
-      if (h.live) return h.host
-    })
+    const liveHosts = sweepResults.hosts.filter(h => { return h.live }).map(h => h.host)
 
     console.log(liveHosts)
 
