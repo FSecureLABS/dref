@@ -7,9 +7,6 @@
   <p align="center">
     <img src="https://travis-ci.com/mwrlabs/dref.svg?branch=master">
     <img src="https://codecov.io/gh/mwrlabs/dref/branch/master/graph/badge.svg">
-    <a href="https://gitter.im/dref/Lobby/">
-      <img src="http://badges.gitter.im/serain/dref.svg">
-    </a>
   </p>
 
   <p align="center">DNS Rebinding Exploitation Framework</p>
