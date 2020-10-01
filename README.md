@@ -3,12 +3,6 @@
     <img src="https://raw.githubusercontent.com/mwrlabs/dref/master/docs/img/logo.png">
   </p>
 
-  <!-- REPLACE SHIELDS -->
-  <p align="center">
-    <img src="https://travis-ci.com/mwrlabs/dref.svg?branch=master">
-    <img src="https://codecov.io/gh/mwrlabs/dref/branch/master/graph/badge.svg">
-  </p>
-
   <p align="center">DNS Rebinding Exploitation Framework</p>
 
   <p align="center">
